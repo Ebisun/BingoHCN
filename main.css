@@ -1,0 +1,16 @@
+h2{
+    float:left;
+}
+td{
+    background: darkblue;
+    color: white;
+    width:100px;
+    height: 100px;
+}
+table{
+    text-align: center;
+}
+.selected{
+    background-color: crimson;
+    color: black;
+}
