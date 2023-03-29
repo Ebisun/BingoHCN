@@ -83,7 +83,15 @@ const gameController = {
                     el.target.classList.remove("selected")
                 else
                     el.target.classList.add("selected")
-            }
+                let chars = document.querySelectorAll(".char")
+                for(let i = 0; i < chars.length; i++){
+                        if (chars[i].innerHTML == el.target.innerHTML.split(" ")[0].replace("_", " ")){
+                            chars[i].click();
+                        }
+                    
+                
+                }
+            } 
         })
     },
     newBoard : function(){
@@ -107,9 +115,7 @@ const gameController = {
     }
 }
 
-
 const common = ["Mai", "Mitch", "Fisher", "Blessley"]
-
 const hairballCoins = [{location : "Hairball", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Tristan"]},
     {location : "Turbine", coins : ["Gabi", "Dustan", "Louist", "Trixie"]},
     {location : "Salmon", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Trixie"]},
