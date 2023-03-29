@@ -18,7 +18,7 @@ const gameController = {
         let arr = this.coins.length-1, randArr = 0;
         while (arr > 0){
             randArr = Math.floor(Math.random() * arr);
-            [this.coins[arr], this.coins[randArr]] = [[this.coins[randArr]], this.coins[arr]];
+            [this.coins[arr], this.coins[randArr]] = [this.coins[randArr], this.coins[arr]];
             arr--;
         }
     },
@@ -39,14 +39,17 @@ const gameController = {
     confirmTable : function(){
         let count = 0;
         for(let i=0; i<5; i++){
-            for (let j = 0; i < 5; i++){
+            for (let j = 0; j < 5; j++){
                 let testSpot = this.tableSet[i][j];
-                if (testSpot[1] != "Coin_Arcade" && testSpot[1]!= "Dog_Arcade"){
+                if (testSpot.coin != "Coin_Arcade" && testSpot.coin!= "Dog_Arcade"){  
                     for(let p = 0; p < 5; p++){
                         for(let q = 0; q < 5; q++){
-                            if((p != i && q != j) && ((p == i && j != q) || (p != i && j == q))){
-                                if(this.testcase[1] === this.tableSet[p][q][1])
-                                count++;
+                            if(p == i ||  q == j){
+                                if (!(p == i && q == j)){
+                                    if(testSpot.coin === this.tableSet[p][q].coin)
+                                    count++;
+                                }
+                                
                             }
                         }
                     }
@@ -54,7 +57,7 @@ const gameController = {
 
             }
         }
-        if(count > 3){
+        if(count > 5){
             this.randomizer();
             this.getList();
             this.makeTable();
@@ -67,12 +70,7 @@ const gameController = {
         for (let i = 0; i < this.tableSet.length; i++){
             htmlString += "<tr>";
             for(let j = 0; j < this.tableSet[i].length; j++){
-                if (i === 0 && j === 0){
-                    htmlString += "<td>" + this.tableSet[i][j] + "</td>"
-                }
-                else{
-                htmlString += "<td>" + this.tableSet[i][j] + "</td>"
-                }
+                    htmlString += "<td>" + this.tableSet[i][j].coin + " " + this.tableSet[i][j].location + "</td>" 
             }
             htmlString += "</tr>"
         }
@@ -99,20 +97,23 @@ const hairballCoins = [{location : "Hairball", coins : ["Gamer_Kid", "Louist", "
     {location : "Pool", coins : ["Gabi", "Trixie"]},
     {location : "Bathhouse", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Tristan"]}]
 
-function fillLocations(){
-    for(let i = 0; i<hairballCoins.length; i++){
-        for(let j =0; j < common.length; j++)
-        hairballCoins[i].coins.push(common[j])
+
+    function fillLocations(){
+        for(let i = 0; i<hairballCoins.length; i++){
+            for(let j =0; j < common.length; j++)
+            hairballCoins[i].coins.push(common[j])
+        }
+        for(let i = 0; i<hairballCoins.length; i++){
+            for(let j=0; j < hairballCoins[i].coins.length; j++)
+                hairballCoins[i].coins[j] = hairballCoins[i].coins[j] + " " + hairballCoins[i].location;
+        }
+        for (let i = 0; i<hairballCoins.length; i++)
+            for(let j = 0; j < hairballCoins[i].coins.length; j++){
+                let temp = hairballCoins[i].coins[j].split(" ")
+                let obj = {location : temp[1], coin : temp[0]}
+                gameController.coins.push(obj)
+        }
     }
-    for(let i = 0; i<hairballCoins.length; i++){
-        for(let j=0; j < hairballCoins[i].coins.length; j++)
-            hairballCoins[i].coins[j] = hairballCoins[i].coins[j] + " " + hairballCoins[i].location;
-    }
-    for (let i = 0; i<hairballCoins.length; i++)
-        for(let j = 0; j < hairballCoins[i].coins.length; j++){
-            let temp = hairballCoins[i].coins[j]
-            gameController.coins.push(temp)
-    }
-}
+    
 
 
