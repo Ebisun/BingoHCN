@@ -10,10 +10,12 @@ td{
 table{
     text-align: center;
 }
+
 #characters{
     display: grid;
     grid-template-rows: repeat(12, 1fr);
 }
+
 .char{
     background: green;
     border: 2px solid black;
@@ -21,7 +23,6 @@ table{
     margin-top: 5px;
     color: white;
 }
-
 
 body{
     text-align: center;

@@ -14,7 +14,7 @@ const gameController = {
         this.confirmTable();
         this.htmlTable();
         this.char();
-        console.log("hi")
+
     },
     randomizer : function(){
         let arr = this.coins.length-1, randArr = 0;
@@ -86,7 +86,9 @@ const gameController = {
                     el.target.classList.add("selected")
                 let chars = document.querySelectorAll(".char")
                 for(let i = 0; i < chars.length; i++){
+
                         if (chars[i].innerHTML == "<span>" + el.target.innerHTML.split(" ")[0].replace("_", " ") + "</span>"){
+
                             chars[i].click();
                         }
                     
@@ -95,11 +97,14 @@ const gameController = {
             } 
         })
     },
+
     char : function(){
         let charDoc = document.querySelector("#characters");
         let htmlString = "";
         for (let i = 0; i<chars.length; i++){
+
             htmlString += "<div class=\"char\"><span>" + chars[i] + "</span></div>"
+
         }
         charDoc.innerHTML = htmlString;
         document.querySelector("#characters").addEventListener("click", el => {
