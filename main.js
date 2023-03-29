@@ -107,7 +107,9 @@ const gameController = {
     }
 }
 
+
 const common = ["Mai", "Mitch", "Fisher", "Blessley"]
+
 const hairballCoins = [{location : "Hairball", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Tristan"]},
     {location : "Turbine", coins : ["Gabi", "Dustan", "Louist", "Trixie"]},
     {location : "Salmon", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Trixie"]},
