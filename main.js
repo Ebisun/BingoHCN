@@ -1,7 +1,7 @@
 window.onload = function(){
     fillLocations();
     gameController.start();
-    document.querySelector("#newGame").addEventListener("click", function(){gameController.newBoard();})
+    document.querySelector("#newGame").addEventListener("click", function(){gameController.start();gameController.start();})
 }
 const gameController = {
     coins : [],
@@ -14,6 +14,7 @@ const gameController = {
         this.confirmTable();
         this.htmlTable();
         this.char();
+
     },
     randomizer : function(){
         let arr = this.coins.length-1, randArr = 0;
@@ -85,7 +86,9 @@ const gameController = {
                     el.target.classList.add("selected")
                 let chars = document.querySelectorAll(".char")
                 for(let i = 0; i < chars.length; i++){
-                        if (chars[i].innerHTML == el.target.innerHTML.split(" ")[0].replace("_", " ")){
+
+                        if (chars[i].innerHTML == "<span>" + el.target.innerHTML.split(" ")[0].replace("_", " ") + "</span>"){
+
                             chars[i].click();
                         }
                     
@@ -94,14 +97,14 @@ const gameController = {
             } 
         })
     },
-    newBoard : function(){
-        this.start()
-    },
+
     char : function(){
         let charDoc = document.querySelector("#characters");
         let htmlString = "";
         for (let i = 0; i<chars.length; i++){
-            htmlString += "<div class=\"char\">" + chars[i] + "</div>"
+
+            htmlString += "<div class=\"char\"><span>" + chars[i] + "</span></div>"
+
         }
         charDoc.innerHTML = htmlString;
         document.querySelector("#characters").addEventListener("click", el => {
