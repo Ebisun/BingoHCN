@@ -13,6 +13,7 @@ const gameController = {
         this.makeTable();
         this.confirmTable();
         this.htmlTable();
+        this.char();
     },
     randomizer : function(){
         let arr = this.coins.length-1, randArr = 0;
@@ -87,10 +88,26 @@ const gameController = {
     },
     newBoard : function(){
         this.start()
+    },
+    char : function(){
+        let charDoc = document.querySelector("#characters");
+        let htmlString = "";
+        for (let i = 0; i<chars.length; i++){
+            htmlString += "<div class=\"char\">" + chars[i] + "</div>"
+        }
+        charDoc.innerHTML = htmlString;
+        document.querySelector("#characters").addEventListener("click", el => {
+            if (el.target.classList.contains("char")){
+                if (el.target.classList.contains("selected"))
+                    el.target.classList.remove("selected")
+                else
+                    el.target.classList.add("selected")
+            }
+        })
     }
 }
 
-const common = ["Dog_Arcade", "Coin_Arcade", "Mai", "Mitch", "Fisher", "Blessley"]
+const common = ["Mai", "Mitch", "Fisher", "Blessley"]
 const hairballCoins = [{location : "Hairball", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Tristan"]},
     {location : "Turbine", coins : ["Gabi", "Dustan", "Louist", "Trixie"]},
     {location : "Salmon", coins : ["Gamer_Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Trixie"]},
@@ -115,5 +132,5 @@ const hairballCoins = [{location : "Hairball", coins : ["Gamer_Kid", "Louist", "
         }
     }
     
-
+const chars = ["Mai", "Mitch", "Fisher", "Blessley", "Gamer Kid", "Louist", "Moomy", "Nina", "Dustan", "Gabi", "Tristan", "Trixie"]
 
