@@ -10,6 +10,24 @@ td{
 table{
     text-align: center;
 }
+#characters{
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+}
+.char{
+    background: green;
+    border: 2px solid black;
+    width:100px;
+    margin-top: 5px;
+    color: white;
+}
+
+
+body{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .selected{
     background-color: crimson;
     color: black;
